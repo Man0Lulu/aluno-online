@@ -1,4 +1,4 @@
-const Nota = require('../src/models/nota');
+const Nota = require('../../../src/models/nota');
 
 describe('Calculo da média final', () => {
     test('a media é zero se não tem notas', () => {
@@ -33,3 +33,30 @@ describe('Calculo da média final', () => {
         expect(nota.mediaFinal()).toEqual(0.4 * 6 + 0.6 * 7);
     });
 });
+
+describe('Conceito de Menção usando a função mediaCA', () => {
+    test('9,0 – 10  | SS – Superior', () => {
+        let nota = new Nota(null, 10, 9, 8);
+        expect(nota.mediaCA()).toEqual("SS");
+    })
+    test('7,0 – 8,9 | MS – Médio Superior', () => {
+        let nota = new Nota(null, 9, 8, 8);
+        expect(nota.mediaCA()).toEqual("MS");
+    })
+    test('5,0 – 6,9 | MM – Médio', () => {
+        let nota = new Nota(null, 7, 6, 6);
+        expect(nota.mediaCA()).toEqual("MM");
+    })
+    test('3,0 – 4,9 | MI – Médio Inferior', () => {
+        let nota = new Nota(null, 5, 4, 3);
+        expect(nota.mediaCA()).toEqual("MI");
+    })
+    test('0,1 – 2,9 | II – Inferior', () => {
+        let nota = new Nota(null, 2, 2, 1);
+        expect(nota.mediaCA()).toEqual("II");
+    })
+    test('0,0       | SR – Sem rendimento', () => {
+        let nota = new Nota(null, 0, 0, 0);
+        expect(nota.mediaCA()).toEqual("SR");
+    })
+})
