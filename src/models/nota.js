@@ -14,7 +14,7 @@ class Nota {
         );
     }
 
-    mediaCA() {
+    
         mediaCA() {
             if (this.mediaFinal() >= 9 ) {
                 return "SS";
@@ -36,6 +36,6 @@ class Nota {
             }
         }
     }
-}
+
 
 module.exports = Nota;
